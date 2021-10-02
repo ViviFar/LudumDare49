@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5095833007057562305}
   - component: {fileID: 1128550176}
   - component: {fileID: 1128550181}
+  - component: {fileID: 1485956209801353210}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -117,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPlayerState: 0
-  liquideTimer: 10
+  liquideTimer: 8.5
   gazeuxTimer: 10
 --- !u!95 &1128550174
 Animator:
@@ -169,7 +170,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -209,3 +210,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53afcd2208b32c3408e5b2f82d72938f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smokeBulletPrefab: {fileID: 5215801053593583661, guid: cfd434e54ee501649a103e43adfafa97, type: 3}
+  waterBulletPrefab: {fileID: 5215801053593583661, guid: cfd434e54ee501649a103e43adfafa97, type: 3}
+  waterDelayBtwShoots: 2
+  smokeDelayBtwShoots: 0.5
+  smokeBulletSpeed: 5
+--- !u!114 &1485956209801353210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281993415961799647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7d110962095a7498b23f748a651e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10

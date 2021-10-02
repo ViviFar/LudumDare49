@@ -15,6 +15,11 @@ public class PlayerHealth : MonoBehaviour
         {
             health -= damage;
             Debug.Log("take " + damage + " damages, health remaining: " + health);
+            if (health <= 0)
+            {
+                Destroy(this.gameObject);
+                //game over -> replay ou return to menu ou quit
+            }
         }
     }
 
