@@ -26,6 +26,12 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
+    private Vector3 solideDirection;
+    public Vector3 SolideDirection
+    {
+        get { return solideDirection; }
+    }
+
     [SerializeField]
     private float liquideTimer = 10;
 
@@ -33,32 +39,40 @@ public class PlayerStatus : MonoBehaviour
     private float gazeuxTimer = 10;
 
     private float timerSinceChange = 0;
+    private Camera cam;
+
+    private void Start()
+    {
+        cam = Camera.main;
+    }
 
     private void Update()
     {
         timerSinceChange += Time.deltaTime;
-        if(currentPlayerState == PlayerState.Gazeux && timerSinceChange>= gazeuxTimer)
+        if((currentPlayerState == PlayerState.Gazeux && timerSinceChange>= gazeuxTimer) || (currentPlayerState == PlayerState.Liquide && timerSinceChange >= liquideTimer))
         {
-            currentPlayerState = PlayerState.Neutral;
-        }
-        else if (currentPlayerState == PlayerState.Liquide && timerSinceChange >= liquideTimer)
-        {
+            Debug.Log("switching back to neutral state");
             currentPlayerState = PlayerState.Neutral;
         }
         else if (currentPlayerState == PlayerState.Neutral)
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
+                Debug.Log("going into liquid");
                 currentPlayerState = PlayerState.Liquide;
                 timerSinceChange = 0;
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                Debug.Log("going into gazeux");
                 currentPlayerState = PlayerState.Gazeux;
                 timerSinceChange = 0;
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
+                solideDirection = (cam.ScreenToWorldPoint(Input.mousePosition)-transform.position).normalized;
+                Debug.Log("direction = " + solideDirection);
+                Debug.Log("going into solid, targeting : " + cam.ScreenToWorldPoint(Input.mousePosition));
                 currentPlayerState = PlayerState.Solide;
             }
         }
