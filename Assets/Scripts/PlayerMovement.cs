@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float speed = 10;
 
+    private PlayerStatus status;
+
     private Vector3 startingPlayerPos;
     private Quaternion startingPlayerRot;
 
@@ -15,12 +17,16 @@ public class PlayerMovement : MonoBehaviour
     {
         startingPlayerPos = transform.position;
         startingPlayerRot = transform.rotation;
+        status = GetComponent<PlayerStatus>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 newPos = new Vector3(transform.position.x + Input.GetAxis("Horizontal") * speed * Time.deltaTime, transform.position.y + Input.GetAxis("Vertical") * speed * Time.deltaTime, 0);
-        transform.position = newPos;
+        if (status.CurrentPlayerState != PlayerState.Solide)
+        {
+            Vector3 newPos = new Vector3(transform.position.x + Input.GetAxis("Horizontal") * speed * Time.deltaTime, transform.position.y + Input.GetAxis("Vertical") * speed * Time.deltaTime, 0);
+            transform.position = newPos;
+        }
     }
 }
