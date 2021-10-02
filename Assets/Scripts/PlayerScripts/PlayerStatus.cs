@@ -64,12 +64,20 @@ public class PlayerStatus : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
+                if (anim != null)
+                {
+                    anim.LaunchLiquide();
+                }
                 Debug.Log("going into liquid");
                 currentPlayerState = PlayerState.Liquide;
                 timerSinceChange = 0;
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                if (anim != null)
+                {
+                    anim.LaunchGazeux();
+                }
                 Debug.Log("going into gazeux");
                 currentPlayerState = PlayerState.Gazeux;
                 timerSinceChange = 0;
@@ -78,7 +86,7 @@ public class PlayerStatus : MonoBehaviour
             {
                 if (anim != null)
                 {
-                    anim.LaunchSolid();
+                    anim.LaunchSolide();
                 }
                 solideDirection = (cam.ScreenToWorldPoint(Input.mousePosition)-transform.position).normalized;
                 Debug.Log("going into solid, targeting : " + cam.ScreenToWorldPoint(Input.mousePosition));
