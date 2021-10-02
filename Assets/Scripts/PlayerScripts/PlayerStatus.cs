@@ -40,10 +40,12 @@ public class PlayerStatus : MonoBehaviour
 
     private float timerSinceChange = 0;
     private Camera cam;
+    private PlayerAnimation anim;
 
     private void Start()
     {
         cam = Camera.main;
+        anim = GetComponent<PlayerAnimation>();
     }
 
     private void Update()
@@ -56,6 +58,10 @@ public class PlayerStatus : MonoBehaviour
         }
         else if (currentPlayerState == PlayerState.Neutral)
         {
+            if (anim != null)
+            {
+                anim.ResetNeutral();
+            }
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 Debug.Log("going into liquid");
@@ -70,8 +76,11 @@ public class PlayerStatus : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
+                if (anim != null)
+                {
+                    anim.LaunchSolid();
+                }
                 solideDirection = (cam.ScreenToWorldPoint(Input.mousePosition)-transform.position).normalized;
-                Debug.Log("direction = " + solideDirection);
                 Debug.Log("going into solid, targeting : " + cam.ScreenToWorldPoint(Input.mousePosition));
                 currentPlayerState = PlayerState.Solide;
             }

@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             Vector2 newPos = transform.position + status.SolideDirection * solideSpeed * Time.deltaTime;
-            Debug.Log(newPos);
             transform.position = newPos;
         }
     }
