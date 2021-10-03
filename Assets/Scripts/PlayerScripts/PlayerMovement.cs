@@ -28,8 +28,7 @@ public class PlayerMovement : MonoBehaviour
         status = GetComponent<PlayerStatus>();
         health = GetComponent<PlayerHealth>();
     }
-
-    bool once = false;
+    
 
     // Update is called once per frame
     void Update()
