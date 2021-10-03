@@ -5,18 +5,18 @@ using UnityEngine;
 public class TeleportCamera : MonoBehaviour
 {
     private Camera camera;
-    public Vector2 direction;
     
     private void Start()
     {
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("player"))
+        Debug.Log("Object entered the trigger");
+        if (other.CompareTag("Player"))
         {
-            camera.transform.Translate(direction);
+            camera.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
         }
     }
 }

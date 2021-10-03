@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.rotation = new Quaternion();
         if (status.CurrentPlayerState != PlayerState.Solide)
         {
             Vector2 newPos = new Vector2(transform.position.x + Input.GetAxis("Horizontal") * speed * Time.deltaTime, transform.position.y + Input.GetAxis("Vertical") * speed * Time.deltaTime);
