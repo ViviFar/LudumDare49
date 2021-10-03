@@ -29,7 +29,7 @@ public class PlayerAttacks : MonoBehaviour
     
     private void Start()
     {
-        status = GetComponent<PlayerStatus>();
+        status = GetComponentInParent<PlayerStatus>();
         cam = Camera.main;
     }
 
@@ -41,8 +41,7 @@ public class PlayerAttacks : MonoBehaviour
             if(status.CurrentPlayerState == PlayerState.Gazeux && timerEntreShoots > smokeDelayBtwShoots)
             {
                 GameObject go = Instantiate(smokeBulletPrefab, bulletSpawner.position, bulletSpawner.rotation, bulletContainer);
-                Vector3 dir = (cam.ScreenToWorldPoint(Input.mousePosition)-transform.position).normalized;
-                go.GetComponent<Rigidbody2D>().velocity = dir * smokeBulletSpeed;
+                go.GetComponent<Rigidbody2D>().velocity = bulletSpawner.right * smokeBulletSpeed;
                 Destroy(go, 5);
             }
             else if(status.CurrentPlayerState == PlayerState.Liquide && timerEntreShoots > waterDelayBtwShoots)

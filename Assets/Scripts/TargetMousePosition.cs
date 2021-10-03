@@ -13,10 +13,8 @@ public class TargetMousePosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 target = cam.ScreenToWorldPoint(Input.mousePosition) - transform.parent.position;
-        transform.localPosition = target.normalized * 3;
-        Quaternion rot = Quaternion.LookRotation(-target, Vector3.forward);
-        transform.rotation = rot;
-        transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z);
+        Vector3 target = cam.ScreenToWorldPoint(Input.mousePosition);
+        float angletarget =  Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0,0,angletarget);
     }
 }
