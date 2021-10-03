@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14230809}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.28, y: 0, z: 0}
+  m_LocalPosition: {x: 2.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1468973722}
@@ -56,7 +56,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468973721}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 14230810}
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53afcd2208b32c3408e5b2f82d72938f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smokeBulletPrefab: {fileID: 5215801053593583661, guid: cfd434e54ee501649a103e43adfafa97, type: 3}
+  smokeBulletPrefab: {fileID: 8397110894251231102, guid: aedd0109bdfb6e142a1945bea2ea845e, type: 3}
   waterBulletPrefab: {fileID: 5215801053593583661, guid: cfd434e54ee501649a103e43adfafa97, type: 3}
   waterDelayBtwShoots: 2
   smokeDelayBtwShoots: 0.5

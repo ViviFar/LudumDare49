@@ -423,7 +423,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000e3e29f97
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1177,26 +1177,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 14230810, guid: 30939ece2a571a44da6faee53be0c206, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 14230810, guid: 30939ece2a571a44da6faee53be0c206, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1468973722, guid: 30939ece2a571a44da6faee53be0c206, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.34
-      objectReference: {fileID: 0}
     - target: {fileID: 1468973724, guid: 30939ece2a571a44da6faee53be0c206, type: 3}
       propertyPath: bulletContainer
       value: 
       objectReference: {fileID: 1863154736}
-    - target: {fileID: 1468973724, guid: 30939ece2a571a44da6faee53be0c206, type: 3}
-      propertyPath: smokeBulletPrefab
-      value: 
-      objectReference: {fileID: 8397110894251231102, guid: aedd0109bdfb6e142a1945bea2ea845e, type: 3}
     - target: {fileID: 7281993415961799645, guid: 30939ece2a571a44da6faee53be0c206, type: 3}
       propertyPath: m_RootOrder
       value: 1

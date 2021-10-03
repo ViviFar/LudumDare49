@@ -12,7 +12,6 @@ public class BulletBehaviour : MonoBehaviour
     private bool hasDestroyAnimation = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("hit something");
         if (collision.gameObject.tag == targetTag)
         {
             Debug.Log("hit target");
