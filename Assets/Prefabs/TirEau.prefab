@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5215801053593583662}
   - component: {fileID: -8370224850615439205}
   - component: {fileID: -3449640246150176302}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TirEau
   m_TagString: Untagged
   m_Icon: {fileID: 0}

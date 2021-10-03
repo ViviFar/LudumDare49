@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1128550176}
   - component: {fileID: 1128550181}
   - component: {fileID: 1485956209801353210}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -215,6 +215,8 @@ MonoBehaviour:
   waterDelayBtwShoots: 2
   smokeDelayBtwShoots: 0.5
   smokeBulletSpeed: 5
+  bulletContainer: {fileID: 0}
+  bulletSpawner: {fileID: 0}
 --- !u!114 &1485956209801353210
 MonoBehaviour:
   m_ObjectHideFlags: 0

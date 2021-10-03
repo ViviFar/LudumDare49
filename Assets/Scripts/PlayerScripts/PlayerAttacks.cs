@@ -6,17 +6,20 @@ public class PlayerAttacks : MonoBehaviour
 {
     [SerializeField]
     private GameObject smokeBulletPrefab;
-
     [SerializeField]
     private GameObject waterBulletPrefab;
 
     [SerializeField]
     private float waterDelayBtwShoots = 2f;
-
     [SerializeField]
     private float smokeDelayBtwShoots = 0.5f;
     [SerializeField]
     private float smokeBulletSpeed = 5;
+
+    [SerializeField]
+    private Transform bulletContainer;
+    [SerializeField]
+    private Transform bulletSpawner;
 
     private float timerEntreShoots = 0;
     private Camera cam;
@@ -37,14 +40,14 @@ public class PlayerAttacks : MonoBehaviour
         {
             if(status.CurrentPlayerState == PlayerState.Gazeux && timerEntreShoots > smokeDelayBtwShoots)
             {
-                GameObject go = Instantiate(smokeBulletPrefab, transform);
-                Vector3 dir = cam.ScreenToWorldPoint(Input.mousePosition).normalized;
+                GameObject go = Instantiate(smokeBulletPrefab, bulletSpawner.position, bulletSpawner.rotation, bulletContainer);
+                Vector3 dir = (cam.ScreenToWorldPoint(Input.mousePosition)-transform.position).normalized;
                 go.GetComponent<Rigidbody2D>().velocity = dir * smokeBulletSpeed;
                 Destroy(go, 5);
             }
             else if(status.CurrentPlayerState == PlayerState.Liquide && timerEntreShoots > waterDelayBtwShoots)
             {
-                GameObject go = Instantiate(waterBulletPrefab, transform);
+                GameObject go = Instantiate(waterBulletPrefab, bulletSpawner.position, bulletSpawner.rotation, bulletContainer);
                 Destroy(go, 0.25f);
             }
         }
