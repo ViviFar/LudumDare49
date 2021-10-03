@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float solideSpeed = 14;
 
+    [SerializeField]
+    private int solideDegats = 10;
+
     private PlayerStatus status;
 
     //pour reset le jeu
@@ -46,29 +49,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (status.CurrentPlayerState == PlayerState.Solide)
         {
-            //TODO: si la collision est avec un ennemi, faire des dégats à l'ennemi + frame d'invulnérabilité pour pas qu'il prenne du dégat juste après
+            Debug.Log("le joueur en solide tape " + collision.gameObject.tag);
             switch (collision.gameObject.tag)
             {
                 case "enemy":
-                    Debug.Log("do damage");
+                    collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(solideDegats);
                     if (health != null)
                     {
                         health.LaunchInvincibilite(1);
                     }
-                    Debug.Log("fin de l'état solide, retour au neutre");
                     status.CurrentPlayerState = PlayerState.Neutral;
-                    break;
-                case "projectile":
-                    Debug.Log("projectile pris");
-                    if (health != null)
-                    {
-                        health.TakeDamage(1);
-                    }
                     break;
                 case "wall":
                     Debug.Log("mur rencontré, retour à l'état neutre");
@@ -79,23 +73,6 @@ public class PlayerMovement : MonoBehaviour
                     break;
             }
         }
-        else
-        {
-            //TODO: si c'est un ennemi ou un projectile, le joueur prend du dégat      
-            switch (collision.gameObject.tag)
-            {
-                case "enemy":
-                case "projectile":
-                    if (status.CurrentPlayerState == PlayerState.Gazeux)
-                    {
-                        health.TakeDamage(4);
-                    }
-                    else
-                    {
-                        health.TakeDamage(2);
-                    }
-                    break;
-            }
-        }
     }
+
 }

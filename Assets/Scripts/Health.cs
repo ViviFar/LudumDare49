@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
 
     protected bool isInvincible = false;
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         if (!isInvincible)
         {

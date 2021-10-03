@@ -4,6 +4,23 @@ using UnityEngine;
 
 public class PlayerHealth : Health
 {
+    private PlayerStatus status;
+    private void Start()
+    {
+        status = GetComponent<PlayerStatus>();
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        if(status.CurrentPlayerState == PlayerState.Solide)
+        {
+            base.TakeDamage(1);
+        }
+        else{
+            base.TakeDamage(damage);
+        }
+    }
+
     public void LaunchInvincibilite(float duration)
     {
         StartCoroutine(Invincibilite(duration));
