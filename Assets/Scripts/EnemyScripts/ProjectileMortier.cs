@@ -33,22 +33,28 @@ public class ProjectileMortier : MonoBehaviour
 
     private void Update()
     {
-        if(!aDepasseYTarget && transform.position.y > yTarget)
+        if (!LevelManager.Instance.IsPaused)
         {
-            aDepasseYTarget = true;
-        }
-        if (aDepasseYTarget && transform.position.y<=yTarget)
-        {
-            rb.velocity = new Vector2();
-            rb.gravityScale = 0;
-            timer += Time.deltaTime;
-            if (timer > tempsAvantExplosion)
+            if (!aDepasseYTarget && transform.position.y > yTarget)
             {
-                if ((player.transform.position - transform.position).magnitude <= areaOfDamageRadius)
+                aDepasseYTarget = true;
+            }
+            if (aDepasseYTarget && transform.position.y <= yTarget)
+            {
+                rb.velocity = new Vector2();
+                rb.gravityScale = 0;
+                timer += Time.deltaTime;
+                if (timer > tempsAvantExplosion)
                 {
-                    player.TakeDamage(degat);
+                    if (player)
+                    {
+                        if ((player.transform.position - transform.position).magnitude <= areaOfDamageRadius)
+                        {
+                            player.TakeDamage(degat);
+                        }
+                    }
+                    Destroy(this.gameObject);
                 }
-                Destroy(this.gameObject);
             }
         }
     }

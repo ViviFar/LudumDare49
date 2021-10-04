@@ -53,48 +53,51 @@ public class PlayerStatus : MonoBehaviour
 
     private void Update()
     {
-        timerSinceChange += Time.deltaTime;
-        if ((currentPlayerState == PlayerState.Gazeux && timerSinceChange >= gazeuxTimer) || (currentPlayerState == PlayerState.Liquide && timerSinceChange >= liquideTimer))
+        if (!LevelManager.Instance.IsPaused)
         {
-            Debug.Log("switching back to neutral state");
-            currentPlayerState = PlayerState.Neutral;
-            timerSinceChange = 0;
-        }
-        else if (currentPlayerState == PlayerState.Neutral && timerSinceChange > delaiApresTransfo) 
-        {
-            if (anim != null)
+            timerSinceChange += Time.deltaTime;
+            if ((currentPlayerState == PlayerState.Gazeux && timerSinceChange >= gazeuxTimer) || (currentPlayerState == PlayerState.Liquide && timerSinceChange >= liquideTimer))
             {
-                anim.ResetNeutral();
-            }
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                if (anim != null)
-                {
-                    anim.LaunchSolide();
-                }
-                solideDirection = (cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-                Debug.Log("going into solid, targeting : " + cam.ScreenToWorldPoint(Input.mousePosition));
-                currentPlayerState = PlayerState.Solide;
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (anim != null)
-                {
-                    anim.LaunchGazeux();
-                }
-                Debug.Log("going into gazeux");
-                currentPlayerState = PlayerState.Gazeux;
+                Debug.Log("switching back to neutral state");
+                currentPlayerState = PlayerState.Neutral;
                 timerSinceChange = 0;
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            else if (currentPlayerState == PlayerState.Neutral && timerSinceChange > delaiApresTransfo)
             {
                 if (anim != null)
                 {
-                    anim.LaunchLiquide();
+                    anim.ResetNeutral();
                 }
-                Debug.Log("going into liquid");
-                currentPlayerState = PlayerState.Liquide;
-                timerSinceChange = 0;
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    if (anim != null)
+                    {
+                        anim.LaunchSolide();
+                    }
+                    solideDirection = (cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+                    Debug.Log("going into solid, targeting : " + cam.ScreenToWorldPoint(Input.mousePosition));
+                    currentPlayerState = PlayerState.Solide;
+                }
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    if (anim != null)
+                    {
+                        anim.LaunchGazeux();
+                    }
+                    Debug.Log("going into gazeux");
+                    currentPlayerState = PlayerState.Gazeux;
+                    timerSinceChange = 0;
+                }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (anim != null)
+                    {
+                        anim.LaunchLiquide();
+                    }
+                    Debug.Log("going into liquid");
+                    currentPlayerState = PlayerState.Liquide;
+                    timerSinceChange = 0;
+                }
             }
         }
     }

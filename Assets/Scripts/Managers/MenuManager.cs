@@ -32,8 +32,7 @@ public class MenuManager : MonoBehaviour
 
     public void PlayButtonClick()
     {
-        Debug.Log("launching game");
-        //StateMachine.Instance.CurrentState = States.StartGame;
+        GameManager.Instance.CurrentState = Etats.EnJeu;
     }
 
     public void Quit(){

@@ -14,12 +14,6 @@ public class Health : MonoBehaviour
         if (!isInvincible)
         {
             health -= damage;
-            Debug.Log(gameObject.name + " take " + damage + " damages, health remaining: " + health);
-            if (health <= 0)
-            {
-                Destroy(this.gameObject);
-                //game over -> replay ou return to menu ou quit
-            }
         }
     }
 }

@@ -29,6 +29,11 @@ public class PlayerHealth : Health
         else{
             base.TakeDamage(damage);
         }
+        if (health <= 0)
+        {
+            LevelManager.Instance.ShowDefeatPanel();
+            Destroy(this.gameObject);
+        }
         LaunchInvincibilite(invincibiliteDuration);
     }
 
@@ -42,7 +47,6 @@ public class PlayerHealth : Health
         isInvincible = true;
         float timer = 0;
         bool isRed = false;
-        collider.enabled = false;
         while (timer < duration)
         {
             timer += 0.5f;
@@ -57,7 +61,6 @@ public class PlayerHealth : Health
             isRed = !isRed;
             yield return new WaitForSeconds(0.5f);
         }
-        collider.enabled = true;
         sprite.color = colorNormal;
         isInvincible = false;
     }

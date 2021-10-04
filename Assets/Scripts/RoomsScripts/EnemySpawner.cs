@@ -16,16 +16,19 @@ public class EnemySpawner : MonoBehaviour
     private GameObject player;
     private int currentNbEnemy = 0;
     private bool spawned = false;
+    BoxCollider2D col;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        col = GetComponent<BoxCollider2D>();
     }
 
     public void Spawn()
     {
         if (!spawned)
         {
+            col.enabled = false;
             int nbEnemyToSpawn = Random.Range(nbEnemyToSpawnMin, nbEnemyToSpawnMax+1);
             currentNbEnemy = nbEnemyToSpawn;
             for (int i = 0; i < nbEnemyToSpawn; i++)
@@ -34,6 +37,10 @@ public class EnemySpawner : MonoBehaviour
                 Instantiate(enemyPrefabs[typeEnemy], new Vector3(transform.position.x + i, transform.position.y + i, 0), transform.rotation, transform);
             }
             spawned = true;
+            if (currentNbEnemy == 0)
+            {
+                col.enabled = true;
+            }
         }
 
         foreach (GameObject go in doors)
@@ -47,6 +54,7 @@ public class EnemySpawner : MonoBehaviour
         currentNbEnemy--;
         if(currentNbEnemy == 0)
         {
+            col.enabled = true;
             foreach(GameObject go in doors)
             {
                 go.SetActive(false);

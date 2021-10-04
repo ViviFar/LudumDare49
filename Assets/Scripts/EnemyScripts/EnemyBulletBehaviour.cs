@@ -12,7 +12,7 @@ public class EnemyBulletBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        Debug.Log("entered trigger with " + collision.gameObject.name);
         if ((collision.gameObject.layer == 8 || collision.gameObject.layer == 9 || collision.gameObject.layer == 7) && gameObject.layer == 9)
         {
             //si c'est le tir d'un ennemi qui se touche lui même, on ignore
@@ -21,13 +21,12 @@ public class EnemyBulletBehaviour : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("hit target");
+            Debug.Log("hit player");
             collision.transform.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
         if (collision.gameObject.tag != "CameraTeleport" && collision.gameObject.tag != "SpawnPoint")
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2();
-            Debug.Log("hit " + collision.gameObject.name);
             if (!hasDestroyAnimation)
             {
                 Destroy(this.gameObject);

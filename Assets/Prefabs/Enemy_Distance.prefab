@@ -135,6 +135,7 @@ MonoBehaviour:
   bulletSpawn: {fileID: 7563394405769786410}
   delaiEntreAttaque: 2
   projectileSpeed: 3
+  enemySpeed: 5
 --- !u!50 &6532683331963140133
 Rigidbody2D:
   serializedVersion: 4

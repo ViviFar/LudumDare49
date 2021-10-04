@@ -30,7 +30,6 @@ public class PlayerBulletBehaviour : MonoBehaviour
         }
         if (collision.gameObject.tag!= "CameraTeleport" && collision.gameObject.tag != "SpawnPoint")
         {
-            Debug.Log("hit " + collision.gameObject.name);
             if (isAirAttack)
             {
                 GetComponent<Rigidbody2D>().velocity = new Vector2();

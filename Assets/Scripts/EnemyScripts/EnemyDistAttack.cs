@@ -16,14 +16,31 @@ public class EnemyDistAttack : MonoBehaviour
     private float delaiEntreAttaque = 0.2f;
     [SerializeField]
     private float projectileSpeed = 60;
+    [SerializeField]
+    private float enemySpeed = 11;
 
     private GameObject player;
 
-    private float timerAttack;
+    private float timerAttack = 0;
     private bool canShoot = true;
+    public bool CanShoot
+    {
+        get { return canShoot; }
+        set { canShoot = value; }
+    }
 
+    private bool canMove = true;
+    public bool CanMove
+    {
+        get { return canMove; }
+        set { canMove = value; }
+    }
+
+
+    private Animator anim;
     private void Start()
     {
+        anim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         timerAttack = ((float)Random.Range(0, 10) / 10) - 1;
         Debug.Log("temps avant 1ere attaque = " + timerAttack);
@@ -33,33 +50,54 @@ public class EnemyDistAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timerAttack += Time.deltaTime;
-        if (!player)
+        if (!LevelManager.Instance.IsPaused)
         {
-            return;
-        }
+            timerAttack += Time.deltaTime;
+            if (!player)
+            {
+                return;
+            }
 
-        if (player != null)
-        {
-            if ((player.transform.position - transform.position).magnitude > 5)
+            if (canMove)
             {
-                canShoot = false;
+                if (player != null)
+                {
+                    if ((player.transform.position - transform.position).magnitude > 3)
+                    {
+                        canShoot = false;
+                        Vector3 dir = (player.transform.position - transform.position);
+                        dir.Normalize();
+                        transform.position += dir * enemySpeed * Time.deltaTime;
+                    }
+                    else
+                    {
+                        canShoot = true;
+                    }
+                }
             }
-            else
+            if (canShoot)
             {
-                canShoot = true;
+                if (timerAttack >= delaiEntreAttaque)
+                {
+                    StartCoroutine(Shoot());
+
+                }
             }
         }
-        if (canShoot)
-        {
-            if (timerAttack >= delaiEntreAttaque)
-            {
-                float angletarget = Mathf.Atan2(player.transform.position.y, player.transform.position.x) * Mathf.Rad2Deg;
-                GameObject go = Instantiate(projectile, bulletSpawn.position, bulletSpawn.rotation, bulletContainer);
-                go.GetComponent<Rigidbody2D>().velocity = projectileSpeed * bulletSpawn.right;
-                Destroy(go, 0.5f);
-                timerAttack = 0;
-            }
-        }
+    }
+
+    private IEnumerator Shoot()
+    {
+        canShoot = false;
+        canMove = false;
+        anim.SetBool("IsShooting", true);
+        yield return new WaitForSeconds(0.83f);
+        float angletarget = Mathf.Atan2(player.transform.position.y, player.transform.position.x) * Mathf.Rad2Deg;
+        GameObject go = Instantiate(projectile, bulletSpawn.position, bulletSpawn.rotation, bulletContainer);
+        go.GetComponent<Rigidbody2D>().velocity = projectileSpeed * bulletSpawn.right;
+        Destroy(go, 1.0f);
+        timerAttack = 0;
+        anim.SetBool("IsShooting", false);
+        canMove = true;
     }
 }

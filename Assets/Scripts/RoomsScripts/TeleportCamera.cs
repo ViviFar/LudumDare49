@@ -13,7 +13,6 @@ public class TeleportCamera : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.gameObject + " entered the trigger");
         if (other.CompareTag("Player"))
         {
             cam.transform.position = new Vector3(transform.position.x, transform.position.y, -10);

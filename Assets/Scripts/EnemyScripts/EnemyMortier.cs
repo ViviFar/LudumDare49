@@ -33,20 +33,24 @@ public class EnemyMortier : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = basePos;
-        transform.rotation = new Quaternion();
-        timeSinceLastShoot += Time.deltaTime;
-        if (timeSinceLastShoot > delaBtwTirs)
+        if (!LevelManager.Instance.IsPaused)
         {
-            timeSinceLastShoot = 0;
-            SetTarget();
-            Shoot();
+            transform.position = basePos;
+            transform.rotation = new Quaternion();
+            timeSinceLastShoot += Time.deltaTime;
+            if (timeSinceLastShoot > delaBtwTirs)
+            {
+                timeSinceLastShoot = 0;
+                SetTarget();
+                Shoot();
+            }
         }
     }
 
     private void SetTarget()
     {
-        target = player.transform.position - bulletSpawner.position;
+        if(player)
+            target = player.transform.position - bulletSpawner.position;
     }
     private void Shoot()
     {

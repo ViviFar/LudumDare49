@@ -35,21 +35,24 @@ public class PlayerAttacks : MonoBehaviour
 
     private void Update()
     {
-        timerEntreShoots += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (!LevelManager.Instance.IsPaused)
         {
-            if(status.CurrentPlayerState == PlayerState.Gazeux && timerEntreShoots > smokeDelayBtwShoots)
+            timerEntreShoots += Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                timerEntreShoots = 0;
-                GameObject go = Instantiate(smokeBulletPrefab, bulletSpawner.position, bulletSpawner.rotation, bulletContainer);
-                go.GetComponent<Rigidbody2D>().velocity = bulletSpawner.right * smokeBulletSpeed;
-                Destroy(go, 5);
-            }
-            else if(status.CurrentPlayerState == PlayerState.Liquide && timerEntreShoots > waterDelayBtwShoots)
-            {
-                timerEntreShoots = 0;
-                GameObject go = Instantiate(waterBulletPrefab, bulletSpawner.position, bulletSpawner.rotation, bulletContainer);
-                Destroy(go, 0.25f);
+                if (status.CurrentPlayerState == PlayerState.Gazeux && timerEntreShoots > smokeDelayBtwShoots)
+                {
+                    timerEntreShoots = 0;
+                    GameObject go = Instantiate(smokeBulletPrefab, bulletSpawner.position, bulletSpawner.rotation, bulletContainer);
+                    go.GetComponent<Rigidbody2D>().velocity = bulletSpawner.right * smokeBulletSpeed;
+                    Destroy(go, 5);
+                }
+                else if (status.CurrentPlayerState == PlayerState.Liquide && timerEntreShoots > waterDelayBtwShoots)
+                {
+                    timerEntreShoots = 0;
+                    GameObject go = Instantiate(waterBulletPrefab, bulletSpawner.position, bulletSpawner.rotation, bulletContainer);
+                    Destroy(go, 0.25f);
+                }
             }
         }
     }
