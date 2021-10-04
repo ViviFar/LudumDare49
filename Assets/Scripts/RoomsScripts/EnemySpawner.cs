@@ -34,7 +34,17 @@ public class EnemySpawner : MonoBehaviour
             for (int i = 0; i < nbEnemyToSpawn; i++)
             {
                 int typeEnemy = Random.Range(0, enemyPrefabs.Count);
-                Instantiate(enemyPrefabs[typeEnemy], new Vector3(transform.position.x + i, transform.position.y + i, 0), transform.rotation, transform);
+                int xRand = Random.Range(-3, 3);
+                int yRand = Random.Range(-3, 3);
+                if (Mathf.Abs(xRand) > 1  && Mathf.Abs(yRand) < 2)
+                {
+                    xRand = Random.Range(-1, 1);
+                }
+                if (Mathf.Abs(yRand) > 1 && Mathf.Abs(xRand) < 2)
+                {
+                    yRand = Random.Range(-1, 1);
+                }
+                Instantiate(enemyPrefabs[typeEnemy], new Vector3(transform.position.x + xRand, transform.position.y + yRand, 0), transform.rotation, transform);
             }
             spawned = true;
             if (currentNbEnemy == 0)
