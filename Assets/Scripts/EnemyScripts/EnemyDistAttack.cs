@@ -23,7 +23,7 @@ public class EnemyDistAttack : MonoBehaviour
 
     private float timerAttack = 0;
     private bool canShoot = true;
-    private int movementMode = 0;  // 0 for going towards the player, 1 for random movement
+    private int movementMode = 1;  // 0 for going towards the player, 1 for random movement
     public bool CanShoot
     {
         get { return canShoot; }
@@ -67,9 +67,9 @@ public class EnemyDistAttack : MonoBehaviour
                     {
                         canShoot = false;
                         Vector3 dir = new Vector3();
-                        if (Random.Range(0, 1000)  > 950)
+                        if (Random.Range(0, 1000)  > 800)
                         {
-                            movementMode = -1*movementMode + 1;
+                            movementMode = 1; /// -1*movementMode + 1;
                         }
                         if (movementMode == 0)
                         {
@@ -79,8 +79,9 @@ public class EnemyDistAttack : MonoBehaviour
                         if (movementMode == 1)
                         {   
                             dir = (player.transform.position - transform.position);
-                            dir.x = dir.x * Random.Range(0, 100) / 100;
-                            dir.y = dir.y * Random.Range(0, 100) / 100;
+                            int coeff = Random.Range(1, 10);
+                            dir.x = dir.x * coeff;
+                            dir.y = dir.y * (10 - coeff);
                             dir.Normalize();
                         }
                         transform.position += dir * enemySpeed * Time.deltaTime;
@@ -111,7 +112,7 @@ public class EnemyDistAttack : MonoBehaviour
         float angletarget = Mathf.Atan2(player.transform.position.y, player.transform.position.x) * Mathf.Rad2Deg;
         GameObject go = Instantiate(projectile, bulletSpawn.position, bulletSpawn.rotation, bulletContainer);
         go.GetComponent<Rigidbody2D>().velocity = projectileSpeed * bulletSpawn.right;
-        Destroy(go, 1.0f);
+        Destroy(go, 2.0f);
         timerAttack = 0;
         anim.SetBool("IsShooting", false);
         canMove = true;
