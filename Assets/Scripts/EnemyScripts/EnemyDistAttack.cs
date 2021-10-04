@@ -23,6 +23,7 @@ public class EnemyDistAttack : MonoBehaviour
 
     private float timerAttack = 0;
     private bool canShoot = true;
+    private int movementMode = 0;  // 0 for going towards the player, 1 for random movement
     public bool CanShoot
     {
         get { return canShoot; }
@@ -65,8 +66,23 @@ public class EnemyDistAttack : MonoBehaviour
                     if ((player.transform.position - transform.position).magnitude > 3)
                     {
                         canShoot = false;
-                        Vector3 dir = (player.transform.position - transform.position);
-                        dir.Normalize();
+                        Vector3 dir = new Vector3();
+                        if (Random.Range(0, 1000)  > 950)
+                        {
+                            movementMode = -1*movementMode + 1;
+                        }
+                        if (movementMode == 0)
+                        {
+                            dir = (player.transform.position - transform.position);
+                            dir.Normalize();
+                        }
+                        if (movementMode == 1)
+                        {   
+                            dir = (player.transform.position - transform.position);
+                            dir.x = dir.x * Random.Range(0, 100) / 100;
+                            dir.y = dir.y * Random.Range(0, 100) / 100;
+                            dir.Normalize();
+                        }
                         transform.position += dir * enemySpeed * Time.deltaTime;
                     }
                     else
