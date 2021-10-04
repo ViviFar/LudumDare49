@@ -27,6 +27,11 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
+    public AudioClip toGasSound;
+    public AudioClip toLiquidSound;
+    public AudioClip toSolidSound;
+    public AudioClip toTriSound;
+
     private Vector3 solideDirection;
     public Vector3 SolideDirection
     {
@@ -58,6 +63,8 @@ public class PlayerStatus : MonoBehaviour
             timerSinceChange += Time.deltaTime;
             if ((currentPlayerState == PlayerState.Gazeux && timerSinceChange >= gazeuxTimer) || (currentPlayerState == PlayerState.Liquide && timerSinceChange >= liquideTimer))
             {
+                transform.GetComponent<AudioSource>().clip = toTriSound;
+                transform.GetComponent<AudioSource>().Play();
                 Debug.Log("switching back to neutral state");
                 currentPlayerState = PlayerState.Neutral;
                 timerSinceChange = 0;
@@ -70,6 +77,8 @@ public class PlayerStatus : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.LeftShift))
                 {
+                    transform.GetComponent<AudioSource>().clip = toSolidSound;
+                    transform.GetComponent<AudioSource>().Play();
                     if (anim != null)
                     {
                         anim.LaunchSolide();
@@ -80,6 +89,8 @@ public class PlayerStatus : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    transform.GetComponent<AudioSource>().clip = toGasSound;
+                    transform.GetComponent<AudioSource>().Play();
                     if (anim != null)
                     {
                         anim.LaunchGazeux();
@@ -90,6 +101,8 @@ public class PlayerStatus : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    transform.GetComponent<AudioSource>().clip = toLiquidSound;
+                    transform.GetComponent<AudioSource>().Play();
                     if (anim != null)
                     {
                         anim.LaunchLiquide();

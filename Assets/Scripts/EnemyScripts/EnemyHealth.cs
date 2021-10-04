@@ -23,6 +23,7 @@ public class EnemyHealth : Health
     }
     public override void TakeDamage(int damage)
     {
+        transform.GetComponent<AudioSource>().Play();
         base.TakeDamage(damage);
         if (health <= 0)
         {
