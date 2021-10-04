@@ -6,6 +6,21 @@ public class Health : MonoBehaviour
 {
     [SerializeField]
     protected int health = 10;
+    public int CurrentHealth
+    {
+        get { return health; }
+    }
+
+    protected int maxHealth;
+    public int MaxHealth
+    {
+        get { return maxHealth; }
+    }
+
+    private void Start()
+    {
+        maxHealth = health;
+    }
 
     protected bool isInvincible = false;
 
