@@ -370,6 +370,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4085926846980733127, guid: 03dc3e4ccd76de2409d40522c6d152df, type: 3}
   m_PrefabInstance: {fileID: 1081983805367100094}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5710327913300083848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4628805905517798966, guid: 03dc3e4ccd76de2409d40522c6d152df, type: 3}
+  m_PrefabInstance: {fileID: 1081983805367100094}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1316523120317165630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2015,6 +2020,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03dc3e4ccd76de2409d40522c6d152df, type: 3}
+--- !u!1 &2792777812344571981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4628805905517798966, guid: 03dc3e4ccd76de2409d40522c6d152df, type: 3}
+  m_PrefabInstance: {fileID: 7421126166405869179}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6793963970685228732 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4085926846980733127, guid: 03dc3e4ccd76de2409d40522c6d152df, type: 3}
@@ -2537,6 +2547,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room Trigger
       objectReference: {fileID: 0}
+    - target: {fileID: 8470604037739153350, guid: 15aed919dc052564a89a6dadd190d88c, type: 3}
+      propertyPath: doors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8470604037739153350, guid: 15aed919dc052564a89a6dadd190d88c, type: 3}
+      propertyPath: doors.Array.data[0]
+      value: 
+      objectReference: {fileID: 2792777812344571981}
+    - target: {fileID: 8470604037739153350, guid: 15aed919dc052564a89a6dadd190d88c, type: 3}
+      propertyPath: doors.Array.data[1]
+      value: 
+      objectReference: {fileID: 5710327913300083848}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15aed919dc052564a89a6dadd190d88c, type: 3}
 --- !u!4 &9122079432705930737 stripped
