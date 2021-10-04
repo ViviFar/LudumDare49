@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 637517251763746225}
   - component: {fileID: 7853404384586619205}
   - component: {fileID: 3218159979889146643}
+  - component: {fileID: 8470604037739153350}
   m_Layer: 0
   m_Name: Room Trigger
   m_TagString: CameraTeleport
@@ -123,3 +124,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
+--- !u!114 &8470604037739153350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6209946186529800451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e051ffdb89f19354da0589b0a61ece5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbEnemyToSpawnMin: 3
+  nbEnemyToSpawnMax: 6
+  enemyPrefabs:
+  - {fileID: 7563394406117723819, guid: 41ee9dd9f0d7c56479c482001e2ef924, type: 3}
+  - {fileID: 1838174889846561338, guid: dc373f38ddadc62468d7e2aec3d390f6, type: 3}

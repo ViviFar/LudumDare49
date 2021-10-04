@@ -7,7 +7,7 @@ public class PlayerBulletBehaviour : MonoBehaviour
     [SerializeField]
     protected int damage = 2;
     [SerializeField]
-    private bool hasDestroyAnimation = false;
+    private bool isAirAttack = false;
     
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,17 +21,17 @@ public class PlayerBulletBehaviour : MonoBehaviour
         if (collision.gameObject.tag == "enemy")
         {
             Debug.Log("hit target");
-            collision.transform.GetComponent<Health>().TakeDamage(damage);
-        }
-        if (collision.gameObject.tag != "wall")
-        {
-
-            Debug.Log("hit " + collision.gameObject.name);
-            if (!hasDestroyAnimation)
+            collision.transform.GetComponent<EnemyHealth>().TakeDamage(damage);
+            if (isAirAttack)
             {
+                GetComponent<Rigidbody2D>().velocity = new Vector2();
                 Destroy(this.gameObject);
             }
-            else
+        }
+        if (collision.gameObject.tag!= "CameraTeleport" && collision.gameObject.tag != "SpawnPoint")
+        {
+            Debug.Log("hit " + collision.gameObject.name);
+            if (isAirAttack)
             {
                 GetComponent<Rigidbody2D>().velocity = new Vector2();
                 GetComponent<Animator>().SetBool("IsExploding", true);
@@ -40,8 +40,7 @@ public class PlayerBulletBehaviour : MonoBehaviour
         }
         else
         {
-            Debug.Log("hit wall");
+            Debug.Log("hit wall " + collision.gameObject.name);
         }
-        GetComponent<Rigidbody2D>().velocity = new Vector2();
     }
 }

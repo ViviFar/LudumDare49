@@ -20,17 +20,21 @@ public class EnemyMortier : MonoBehaviour
 
     private Vector3 target;
     private float timeSinceLastShoot = 0;
+    private Vector3 basePos;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         bulletContainer = GameObject.FindGameObjectWithTag("BulletContainer").transform;
+        basePos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.position = basePos;
+        transform.rotation = new Quaternion();
         timeSinceLastShoot += Time.deltaTime;
         if (timeSinceLastShoot > delaBtwTirs)
         {

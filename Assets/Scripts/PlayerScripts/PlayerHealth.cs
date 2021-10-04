@@ -8,6 +8,7 @@ public class PlayerHealth : Health
     private float invincibiliteDuration = 2;
     private PlayerStatus status;
     private SpriteRenderer sprite;
+    private CapsuleCollider2D collider;
 
     private Color colorRed, colorNormal;
     private void Start()
@@ -16,6 +17,7 @@ public class PlayerHealth : Health
         sprite = GetComponent<SpriteRenderer>();
         colorNormal = new Color(1, 1, 1);
         colorRed = new Color(1, 0, 0);
+        collider = GetComponent<CapsuleCollider2D>();
     }
 
     public override void TakeDamage(int damage)
@@ -40,6 +42,7 @@ public class PlayerHealth : Health
         isInvincible = true;
         float timer = 0;
         bool isRed = false;
+        collider.enabled = false;
         while (timer < duration)
         {
             timer += 0.5f;
@@ -54,6 +57,7 @@ public class PlayerHealth : Health
             isRed = !isRed;
             yield return new WaitForSeconds(0.5f);
         }
+        collider.enabled = true;
         sprite.color = colorNormal;
         isInvincible = false;
     }

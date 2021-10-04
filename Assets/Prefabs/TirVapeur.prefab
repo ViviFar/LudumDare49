@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  hasDestroyAnimation: 1
+  isAirAttack: 1
 --- !u!210 &2650350823874071866
 SortingGroup:
   m_ObjectHideFlags: 0

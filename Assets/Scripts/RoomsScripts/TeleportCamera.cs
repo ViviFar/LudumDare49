@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class TeleportCamera : MonoBehaviour
 {
-    private Camera camera;
+    private Camera cam;
     
     private void Start()
     {
-        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -16,7 +16,8 @@ public class TeleportCamera : MonoBehaviour
         Debug.Log(other.gameObject + " entered the trigger");
         if (other.CompareTag("Player"))
         {
-            camera.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+            cam.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+            GetComponent<EnemySpawner>().Spawn();
         }
     }
 }

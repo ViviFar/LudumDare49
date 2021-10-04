@@ -24,9 +24,9 @@ public class EnemyBulletBehaviour : MonoBehaviour
             Debug.Log("hit target");
             collision.transform.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
-        if (collision.gameObject.tag != "wall")
+        if (collision.gameObject.tag != "CameraTeleport" && collision.gameObject.tag != "SpawnPoint")
         {
-
+            GetComponent<Rigidbody2D>().velocity = new Vector2();
             Debug.Log("hit " + collision.gameObject.name);
             if (!hasDestroyAnimation)
             {
@@ -41,8 +41,6 @@ public class EnemyBulletBehaviour : MonoBehaviour
         }
         else
         {
-            Debug.Log("hit wall");
         }
-        GetComponent<Rigidbody2D>().velocity = new Vector2();
     }
 }

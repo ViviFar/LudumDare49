@@ -19,7 +19,13 @@ public class EnemyHealth : Health
     }
     public override void TakeDamage(int damage)
     {
-        base.TakeDamage(damage);
+        health -= damage;
+        if (health <= 0)
+        {
+            GetComponentInParent<EnemySpawner>().OnEnemyDeath();
+            Destroy(this.gameObject);
+            //game over -> replay ou return to menu ou quit
+        }
         MoveAfterHit();
     }
 
