@@ -16,6 +16,7 @@ public class RoomTemplates : MonoBehaviour
     public float waitTime;
     private bool spawnedBoss;
     public GameObject boss;
+    public GameObject bossFloor;
 
     private void Update()
     {
@@ -25,8 +26,15 @@ public class RoomTemplates : MonoBehaviour
             {
                 if(i == rooms.Count - 1)
                 {
+                    // spawn boss
+                    Instantiate(bossFloor, rooms[i].transform.position, Quaternion.identity);
                     Instantiate(boss, rooms[i].transform.position, Quaternion.identity);
                     spawnedBoss = true;
+
+                    // deactivate enemies in boss room
+                    rooms[i].transform.Find("Room Trigger").gameObject.GetComponent<EnemySpawner>().nbEnemyToSpawnMin = 0;
+                    rooms[i].transform.Find("Room Trigger").gameObject.GetComponent<EnemySpawner>().nbEnemyToSpawnMax = 0;
+                    rooms[i].transform.Find("Room Trigger").gameObject.GetComponent<EnemySpawner>().boss = true;
                 }
             }
         }

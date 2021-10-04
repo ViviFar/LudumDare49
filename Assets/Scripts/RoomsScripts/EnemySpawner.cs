@@ -5,13 +5,15 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
-    private int nbEnemyToSpawnMin = 3;
+    public int nbEnemyToSpawnMin = 3;
     [SerializeField]
-    private int nbEnemyToSpawnMax=6;
+    public int nbEnemyToSpawnMax = 6;
     [SerializeField]
     private List<GameObject> enemyPrefabs;
     [SerializeField]
     private List<GameObject> doors;
+    [SerializeField]
+    public bool boss = false;
 
     private GameObject player;
     private int currentNbEnemy = 0;
@@ -29,14 +31,14 @@ public class EnemySpawner : MonoBehaviour
         if (!spawned)
         {
             col.enabled = false;
-            int nbEnemyToSpawn = Random.Range(nbEnemyToSpawnMin, nbEnemyToSpawnMax+1);
+            int nbEnemyToSpawn = Random.Range(nbEnemyToSpawnMin, nbEnemyToSpawnMax + 1);
             currentNbEnemy = nbEnemyToSpawn;
             for (int i = 0; i < nbEnemyToSpawn; i++)
             {
                 int typeEnemy = Random.Range(0, enemyPrefabs.Count);
                 int xRand = Random.Range(-3, 3);
                 int yRand = Random.Range(-3, 3);
-                if (Mathf.Abs(xRand) > 1  && Mathf.Abs(yRand) < 2)
+                if (Mathf.Abs(xRand) > 1 && Mathf.Abs(yRand) < 2)
                 {
                     xRand = Random.Range(-1, 1);
                 }
@@ -55,17 +57,17 @@ public class EnemySpawner : MonoBehaviour
 
         foreach (GameObject go in doors)
         {
-            go.SetActive(currentNbEnemy!=0);
+            go.SetActive(currentNbEnemy != 0 || boss);
         }
     }
 
     public void OnEnemyDeath()
     {
         currentNbEnemy--;
-        if(currentNbEnemy == 0)
+        if (currentNbEnemy == 0 && !boss)
         {
             col.enabled = true;
-            foreach(GameObject go in doors)
+            foreach (GameObject go in doors)
             {
                 go.SetActive(false);
             }
