@@ -16,12 +16,7 @@ public class MenuManager : MonoBehaviour
     {
         ActivateMenu();   
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public void ActivateMenu()
     {
@@ -37,10 +32,12 @@ public class MenuManager : MonoBehaviour
 
     public void PlayButtonClick()
     {
+        Debug.Log("launching game");
         //StateMachine.Instance.CurrentState = States.StartGame;
     }
 
     public void Quit(){
+        Debug.Log("quitting");
         Application.Quit();
     }
 }

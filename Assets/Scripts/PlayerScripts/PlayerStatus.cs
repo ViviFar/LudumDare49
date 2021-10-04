@@ -22,6 +22,7 @@ public class PlayerStatus : MonoBehaviour
             if(currentPlayerState != value)
             {
                 currentPlayerState = value;
+                timerSinceChange = 0;
             }
         }
     }
@@ -37,6 +38,8 @@ public class PlayerStatus : MonoBehaviour
 
     [SerializeField]
     private float gazeuxTimer = 10;
+    [SerializeField]
+    private float delaiApresTransfo = 0.5f;
 
     private float timerSinceChange = 0;
     private Camera cam;
@@ -51,12 +54,13 @@ public class PlayerStatus : MonoBehaviour
     private void Update()
     {
         timerSinceChange += Time.deltaTime;
-        if((currentPlayerState == PlayerState.Gazeux && timerSinceChange>= gazeuxTimer) || (currentPlayerState == PlayerState.Liquide && timerSinceChange >= liquideTimer))
+        if ((currentPlayerState == PlayerState.Gazeux && timerSinceChange >= gazeuxTimer) || (currentPlayerState == PlayerState.Liquide && timerSinceChange >= liquideTimer))
         {
             Debug.Log("switching back to neutral state");
             currentPlayerState = PlayerState.Neutral;
+            timerSinceChange = 0;
         }
-        else if (currentPlayerState == PlayerState.Neutral)
+        else if (currentPlayerState == PlayerState.Neutral && timerSinceChange > delaiApresTransfo) 
         {
             if (anim != null)
             {
@@ -66,11 +70,11 @@ public class PlayerStatus : MonoBehaviour
             {
                 if (anim != null)
                 {
-                    anim.LaunchLiquide();
+                    anim.LaunchSolide();
                 }
-                Debug.Log("going into liquid");
-                currentPlayerState = PlayerState.Liquide;
-                timerSinceChange = 0;
+                solideDirection = (cam.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+                Debug.Log("going into solid, targeting : " + cam.ScreenToWorldPoint(Input.mousePosition));
+                currentPlayerState = PlayerState.Solide;
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -86,11 +90,11 @@ public class PlayerStatus : MonoBehaviour
             {
                 if (anim != null)
                 {
-                    anim.LaunchSolide();
+                    anim.LaunchLiquide();
                 }
-                solideDirection = (cam.ScreenToWorldPoint(Input.mousePosition)-transform.position).normalized;
-                Debug.Log("going into solid, targeting : " + cam.ScreenToWorldPoint(Input.mousePosition));
-                currentPlayerState = PlayerState.Solide;
+                Debug.Log("going into liquid");
+                currentPlayerState = PlayerState.Liquide;
+                timerSinceChange = 0;
             }
         }
     }

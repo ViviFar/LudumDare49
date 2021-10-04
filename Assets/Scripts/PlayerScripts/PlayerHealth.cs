@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class PlayerHealth : Health
 {
+    [SerializeField]
+    private float invincibiliteDuration = 2;
     private PlayerStatus status;
+    private SpriteRenderer sprite;
+
+    private Color colorRed, colorNormal;
     private void Start()
     {
         status = GetComponent<PlayerStatus>();
+        sprite = GetComponent<SpriteRenderer>();
+        colorNormal = new Color(1, 1, 1);
+        colorRed = new Color(1, 0, 0);
     }
 
     public override void TakeDamage(int damage)
@@ -19,6 +27,7 @@ public class PlayerHealth : Health
         else{
             base.TakeDamage(damage);
         }
+        LaunchInvincibilite(invincibiliteDuration);
     }
 
     public void LaunchInvincibilite(float duration)
@@ -29,9 +38,23 @@ public class PlayerHealth : Health
     private IEnumerator Invincibilite(float duration)
     {
         isInvincible = true;
-        Debug.Log("start invincibilite");
-        yield return new WaitForSeconds(duration);
-        Debug.Log("end invincibilite");
+        float timer = 0;
+        bool isRed = false;
+        while (timer < duration)
+        {
+            timer += 0.5f;
+            if (isRed)
+            {
+                sprite.color = colorNormal;
+            }
+            else
+            {
+                sprite.color = colorRed;
+            }
+            isRed = !isRed;
+            yield return new WaitForSeconds(0.5f);
+        }
+        sprite.color = colorNormal;
         isInvincible = false;
     }
 }

@@ -11,7 +11,7 @@ public class EnemyHealth : Health
 
     protected GameObject player;
     Vector3 TargetDeplacement;
-    float distanceParcourue = 0;
+    float distanceParcourue = 100;
 
     private void Start()
     {
