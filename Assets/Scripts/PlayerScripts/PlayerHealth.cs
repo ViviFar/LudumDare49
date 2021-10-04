@@ -34,6 +34,7 @@ public class PlayerHealth : Health
             LevelManager.Instance.ShowDefeatPanel();
             Destroy(this.gameObject);
         }
+        LevelManager.Instance.UpdateHealthUI(health);
         LaunchInvincibilite(invincibiliteDuration);
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : GenericSingleton<LevelManager>
 {
@@ -13,6 +14,13 @@ public class LevelManager : GenericSingleton<LevelManager>
 
     [SerializeField]
     private GameObject defeatScreenPanel;
+
+    [SerializeField]
+    private RawImage[] hearts;
+    [SerializeField]
+    private Texture fullHeart;
+    [SerializeField]
+    private Texture semiHeart;
 
 
     private bool isPaused = false;
@@ -100,5 +108,27 @@ public class LevelManager : GenericSingleton<LevelManager>
     {
         Time.timeScale = 1;
         Application.Quit();
+    }
+
+    public void UpdateHealthUI(int currentLife)
+    {
+        int n = currentLife / 2;
+        for (int i=0; i<5; i++)
+        {
+            if (n > i)
+            {
+                hearts[i].texture = fullHeart;
+                hearts[i].enabled = true;
+            }
+            else if(n==i && currentLife % 2 == 1)
+            {
+                hearts[i].texture = semiHeart;
+                hearts[i].enabled = true;
+            }
+            else
+            {
+                hearts[i].enabled = false;
+            }
+        }
     }
 }
