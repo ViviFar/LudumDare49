@@ -199,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   solideSpeed: 12
-  solideDegats: 10
+  solideDegats: 20
 --- !u!114 &7281993415961799651
 MonoBehaviour:
   m_ObjectHideFlags: 0

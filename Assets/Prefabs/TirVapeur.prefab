@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 8397110894251231102}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -3.7165248, y: -1.1701128, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
+  m_LocalScale: {x: 0.13096894, y: 0.13096894, z: 2.619379}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -122,7 +122,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.9392595, y: 0.34319234}
+  m_Offset: {x: 0.5907949, y: 0.086103916}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -133,7 +133,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.303701, y: 4.6403375}
+  m_Size: {x: 2.606772, y: 3.4603596}
   m_EdgeRadius: 0
 --- !u!95 &5876983965304097672
 Animator:
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499eb843c7c00714a8edcfc197ac2e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 10
   isAirAttack: 1
 --- !u!210 &2650350823874071866
 SortingGroup:
