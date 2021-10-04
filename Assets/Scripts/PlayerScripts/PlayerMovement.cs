@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private int solideDegats = 10;
 
+    [SerializeField]
+    public AudioClip solidCollisionSound;
+
     private PlayerStatus status;
 
     //pour reset le jeu
@@ -56,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (status.CurrentPlayerState == PlayerState.Solide)
         {
+            transform.GetComponent<AudioSource>().clip = solidCollisionSound;
+            transform.GetComponent<AudioSource>().Play();
             Debug.Log("le joueur en solide tape " + collision.gameObject.tag);
             switch (collision.gameObject.tag)
             {

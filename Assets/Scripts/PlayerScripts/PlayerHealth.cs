@@ -10,6 +10,9 @@ public class PlayerHealth : Health
     private SpriteRenderer sprite;
     private CapsuleCollider2D col;
 
+    [SerializeField]
+    public AudioClip hurtSound;
+
     private Color colorRed, colorNormal;
     private void Start()
     {
@@ -22,7 +25,10 @@ public class PlayerHealth : Health
 
     public override void TakeDamage(int damage)
     {
-        if(status.CurrentPlayerState == PlayerState.Solide)
+        transform.GetComponent<AudioSource>().clip = hurtSound;
+        transform.GetComponent<AudioSource>().Play();
+
+        if (status.CurrentPlayerState == PlayerState.Solide)
         {
             base.TakeDamage(1);
         }
