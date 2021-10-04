@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 6532683331963140133}
   - component: {fileID: 5144483577557743878}
   - component: {fileID: 1907214786}
+  - component: {fileID: 9073124679711478459}
   m_Layer: 8
   m_Name: Enemy_Distance
   m_TagString: enemy
@@ -131,7 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 8397110894251231102, guid: bbbf302318020004e9fdafb6afd31e7b, type: 3}
-  bulletContainer: {fileID: 0}
   bulletSpawn: {fileID: 7563394405769786410}
   delaiEntreAttaque: 2
   projectileSpeed: 3
@@ -197,6 +197,25 @@ MonoBehaviour:
   health: 500
   distanceAParcourir: 0.5
   speed: 2
+--- !u!95 &9073124679711478459
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563394406117723819}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c70b2961f2928cd4ba8f7bb350466ba7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7563394406449438610
 GameObject:
   m_ObjectHideFlags: 0
