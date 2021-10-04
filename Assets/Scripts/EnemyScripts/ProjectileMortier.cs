@@ -13,6 +13,7 @@ public class ProjectileMortier : MonoBehaviour
 
     private PlayerHealth player;
     private Rigidbody2D rb;
+    private Animator anim;
 
     private bool isAtTargetPos = false;
     private float timer = 0;
@@ -27,6 +28,7 @@ public class ProjectileMortier : MonoBehaviour
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
         player = FindObjectOfType<PlayerHealth>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -41,6 +43,10 @@ public class ProjectileMortier : MonoBehaviour
             }
             if (aDepasseYTarget && transform.position.y <= yTarget)
             {
+                if (anim)
+                {
+                    anim.SetBool("IsTriggering", true);
+                }
                 rb.velocity = new Vector2();
                 rb.gravityScale = 0;
                 timer += Time.deltaTime;
@@ -53,7 +59,11 @@ public class ProjectileMortier : MonoBehaviour
                             player.TakeDamage(degat);
                         }
                     }
-                    Destroy(this.gameObject);
+                    if (anim)
+                    {
+                        anim.SetBool("IsExploding", true);
+                    }
+                    Destroy(this.gameObject, 0.35f);
                 }
             }
         }
