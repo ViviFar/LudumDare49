@@ -45,7 +45,7 @@ public class EnemyDistAttack : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         timerAttack = ((float)Random.Range(0, 10) / 10) - 1;
         Debug.Log("temps avant 1ere attaque = " + timerAttack);
-        bulletContainer = GameObject.FindGameObjectWithTag("BulletContainer").transform;
+        bulletContainer = LevelManager.Instance.BulletContainer;
     }
 
     // Update is called once per frame

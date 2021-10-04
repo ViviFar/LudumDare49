@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BossHealth : Health
 {
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
@@ -11,6 +16,17 @@ public class BossHealth : Health
         {
             StartCoroutine(BossDeath());   
         }
+    }
+
+    private void Update()
+    {
+
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            health -= (maxHealth - 1);
+        }
+#endif  
     }
 
     private IEnumerator BossDeath()

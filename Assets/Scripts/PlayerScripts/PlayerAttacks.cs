@@ -15,8 +15,7 @@ public class PlayerAttacks : MonoBehaviour
     private float smokeDelayBtwShoots = 0.5f;
     [SerializeField]
     private float smokeBulletSpeed = 5;
-
-    [SerializeField]
+    
     private Transform bulletContainer;
     [SerializeField]
     private Transform bulletSpawner;
@@ -29,6 +28,7 @@ public class PlayerAttacks : MonoBehaviour
     
     private void Start()
     {
+        bulletContainer = LevelManager.Instance.BulletContainer;
         status = GetComponentInParent<PlayerStatus>();
         cam = Camera.main;
     }
@@ -38,7 +38,7 @@ public class PlayerAttacks : MonoBehaviour
         if (!LevelManager.Instance.IsPaused)
         {
             timerEntreShoots += Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKey(KeyCode.Mouse0))
             {
                 if (status.CurrentPlayerState == PlayerState.Gazeux && timerEntreShoots > smokeDelayBtwShoots)
                 {

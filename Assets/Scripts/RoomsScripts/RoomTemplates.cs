@@ -28,7 +28,8 @@ public class RoomTemplates : MonoBehaviour
                 {
                     // spawn boss
                     Instantiate(bossFloor, rooms[i].transform.position, Quaternion.identity);
-                    Instantiate(boss, rooms[i].transform.position, Quaternion.identity);
+                    GameObject go = Instantiate(boss, rooms[i].transform.position, Quaternion.identity);
+                    go.GetComponent<BossShoot>().CentralPos = rooms[i].transform.position;
                     spawnedBoss = true;
 
                     // deactivate enemies in boss room

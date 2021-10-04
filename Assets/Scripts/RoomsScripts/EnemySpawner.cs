@@ -28,6 +28,13 @@ public class EnemySpawner : MonoBehaviour
 
     public void Spawn()
     {
+        if (boss)
+        {
+            if(LevelManager.Instance.Boss != null)
+            {
+                LevelManager.Instance.Boss.SetActif();
+            }
+        }
         if (!spawned)
         {
             col.enabled = false;

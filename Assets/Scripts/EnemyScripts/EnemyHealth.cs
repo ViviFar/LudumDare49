@@ -57,6 +57,7 @@ public class EnemyHealth : Health
             }
             transform.rotation = new Quaternion();
         }
+
     }
 
     private IEnumerator Touche()

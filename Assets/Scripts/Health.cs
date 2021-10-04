@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
         get { return maxHealth; }
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         maxHealth = health;
     }

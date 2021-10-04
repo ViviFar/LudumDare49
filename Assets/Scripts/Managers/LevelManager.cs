@@ -22,6 +22,19 @@ public class LevelManager : GenericSingleton<LevelManager>
     [SerializeField]
     private Texture semiHeart;
 
+    [SerializeField]
+    private Transform bulletContainer;
+    public Transform BulletContainer
+    {
+        get { return bulletContainer; }
+    }
+
+    private BossShoot boss;
+    public BossShoot Boss
+    {
+        get { return boss; }
+        set { boss = value; }
+    }
 
     private bool isPaused = false;
     public bool IsPaused

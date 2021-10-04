@@ -26,7 +26,7 @@ public class EnemyMortier : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        bulletContainer = GameObject.FindGameObjectWithTag("BulletContainer").transform;
+        bulletContainer =LevelManager.Instance.BulletContainer;
         basePos = transform.position;
     }
 
